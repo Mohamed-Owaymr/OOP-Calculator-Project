@@ -54,7 +54,6 @@ This ensures the user sees only the **necessary interface**, not the internal co
 - 📜 Operation history support  
 - 🚫 Input validation for numbers and menu choices  
 
----
 
-## 💡 Example Output
+
 
