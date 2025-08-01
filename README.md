@@ -1,14 +1,17 @@
-# 🧮 Simple Calculator Using OOP
+# 🧮 Simple Calculator Using OOP (Modular Version)
 
-A **console-based calculator** built in **C++**, designed to demonstrate core **Object-Oriented Programming (OOP)** concepts like **Encapsulation** and **Abstraction**.
+A **modular, console-based calculator** built in **C++**, designed to demonstrate clean **Object-Oriented Programming (OOP)** architecture using **Encapsulation**, **Abstraction**, and **Separation of Concerns**.
 
 ---
 
 ## 📌 Project Goals
 
-This project was created as a **practice tool** to apply and understand the principles of:
-- 🔐 **Encapsulation**: bundling data and operations inside a class.
-- 🧠 **Abstraction**: hiding implementation details and exposing only essential functionality.
+This project was created to **practice and apply OOP principles**, and to learn how to organize C++ projects into reusable components using header and source files.
+
+- ✅ Encapsulation
+- ✅ Abstraction
+- ✅ Separation between UI & Logic
+- ✅ Header/source file organization
 
 ---
 
@@ -16,30 +19,32 @@ This project was created as a **practice tool** to apply and understand the prin
 
 ### 🔐 Encapsulation
 
-All the calculator logic is encapsulated inside a single class `Calculator`. Here's how it's implemented:
+- The internal data and states of the calculator are hidden:
+  - Attributes like `_Result`, `_PreviousResultsHistory`, and `_TheLastOperation` are **private**.
+  - Interaction happens through public methods only (`add`, `subtract`, `clear`, etc.).
 
-- **Private Attributes & Methods**:  
-  - Internal states like `_Result`, `_PreviousResultsHistory`, and `_TheLastOperation` are **private**.
-  - Helper methods like `_DisplayOperatinsMenu()`, `_ReadNumber()`, `_ExecuteOperation()` are **hidden from the user**, ensuring control over how the data is accessed or changed.
-
-- **Public Interface**:  
-  - Only essential methods such as `add()`, `subtract()`, `run()`, etc., are exposed for external interaction.
-  - This separation keeps the class **robust, secure, and maintainable**.
+- Getters like `result()` and `theLastOperation()` expose data safely, eliminating the need for `friend class`.
 
 ---
 
 ### 🧠 Abstraction
 
-Users of the `Calculator` class:
-- Do **not need to know** how each operation works internally.
-- Simply interact with `calc.run()` to launch the calculator.
+- The user doesn't see or care **how** operations are applied.
+- The internal details like input validation, operation tracking, and error handling are **hidden** inside the logic class.
 
-The implementation hides:
-- How inputs are validated.
-- How previous results are stored.
-- How operations are applied internally.
+---
 
-This ensures the user sees only the **necessary interface**, not the internal complexity.
+### 🧩 Separation of Concerns
+
+- `CalculatorUI` handles:
+  - All user interaction (input/output)
+  - Menu display
+  - Reading user choices and values
+
+- `Calculator` handles:
+  - Operation logic and state management
+
+This keeps both classes **focused**, **testable**, and **easy to maintain**.
 
 ---
 
@@ -48,12 +53,16 @@ This ensures the user sees only the **necessary interface**, not the internal co
 - ➕ Add numbers  
 - ➖ Subtract numbers  
 - ✖️ Multiply numbers  
-- ➗ Divide numbers (with zero-division error handling)  
+- ➗ Divide numbers (with zero-division protection)  
 - 🔁 Cancel the last operation (undo)  
 - 🧹 Clear the current result  
-- 📜 Operation history support  
-- 🚫 Input validation for numbers and menu choices  
+- 📤 Display the current result  
+- 🚫 Input validation for menu and values  
 
+---
 
+## 📦 How to Run
 
-
+1. Compile all files using a C++ compiler:
+```bash
+g++ main.cpp calculator_logic.cpp calculator_UI.cpp -o calculator
